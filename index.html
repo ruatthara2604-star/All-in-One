@@ -1,154 +1,517 @@
 <!DOCTYPE html>
-<html
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>All in One</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Puіh Taw nna</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
-header{background:#171717;color:white;padding:22px;text-align:center}
-header h1{color:#f4a51c;margin:5px}
-main{padding:20px}
-.box{background:white;padding:20px;border-radius:18px;margin-bottom:15px}
-button{background:#f4a51c;border:0;padding:14px;border-radius:12px;font-weight:bold;width:100%;margin-top:10px}
-input,textarea,select{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
-.job{background:white;padding:15px;border-radius:15px;margin:10px 0;border:1px solid #ddd}
-nav{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px;display:flex;gap:5px}
-nav button{margin:0;padding:10px}
-.screen{display:none}.active{display:block}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #080b12;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+/* HEADER */
+header {
+    padding: 22px 20px 15px;
+    text-align: center;
+    border-bottom: 1px solid #202634;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #00e5ff;
+}
+
+.subtitle {
+    color: #8d96a8;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+/* HERO */
+.hero {
+    margin: 25px 16px;
+    padding: 30px 20px;
+    border: 1px solid #202b3c;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #101725, #090d15);
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.06);
+}
+
+.hero h1 {
+    font-size: 27px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #9ca6b8;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.search {
+    margin-top: 20px;
+    display: flex;
+    background: #151c28;
+    border: 1px solid #2b3547;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.search input {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.search button {
+    border: none;
+    background: #00d9ff;
+    color: #001016;
+    padding: 0 18px;
+    font-weight: bold;
+}
+
+/* SECTION */
+.section {
+    padding: 0 16px;
+    margin-top: 28px;
+}
+
+.section-title {
+    font-size: 19px;
+    margin-bottom: 15px;
+}
+
+/* CATEGORIES */
+.categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.category {
+    padding: 20px 14px;
+    border-radius: 16px;
+    border: 1px solid #202a3a;
+    background: #101620;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category:hover {
+    border-color: #00d9ff;
+    transform: translateY(-2px);
+}
+
+.category-icon {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.category h3 {
+    font-size: 15px;
+}
+
+.category p {
+    color: #7f899a;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* QUICK ACTIONS */
+.actions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.action {
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid #273144;
+    background: #0e141f;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action.primary {
+    background: #00d9ff;
+    color: #001016;
+    border: none;
+    font-weight: bold;
+}
+
+/* AI */
+.ai {
+    margin: 28px 16px 100px;
+    padding: 20px;
+    border-radius: 18px;
+    border: 1px solid #29364a;
+    background: linear-gradient(145deg, #111a29, #0b1019);
+}
+
+.ai h2 {
+    font-size: 18px;
+    margin-bottom: 7px;
+}
+
+.ai p {
+    color: #929caf;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.ai button {
+    margin-top: 15px;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: 1px solid #00d9ff;
+    background: transparent;
+    color: #00d9ff;
+    cursor: pointer;
+}
+
+/* BOTTOM NAV */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(8, 11, 18, 0.96);
+    border-top: 1px solid #202735;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-item {
+    color: #8791a3;
+    text-align: center;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.nav-item div {
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+
+.nav-item.active {
+    color: #00d9ff;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-box {
+    width: 100%;
+    max-width: 400px;
+    background: #101722;
+    border: 1px solid #29364a;
+    border-radius: 18px;
+    padding: 24px;
+}
+
+.modal-box h2 {
+    margin-bottom: 10px;
+}
+
+.modal-box p {
+    color: #9aa4b6;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.close {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #00d9ff;
+    color: #001016;
+    font-weight: bold;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>🛠️ Puih Tawnna</h1>
-<p>Find Work. Find Workers.</p>
+    <div class="logo">⚡ <span>Puіh</span> Taw nna</div>
+    <div class="subtitle">One place. Many possibilities.</div>
 </header>
 
-<main>
+<section class="hero">
 
-<div id="home" class="screen active">
-<div class="box">
-<h2>Welcome to Puih Tawnna</h2>
-<p>Find jobs or find people who can work for you.</p>
-<button onclick="show('jobs')">🔎 Find a Job</button>
-<button onclick="show('post')">➕ Post a Job</button>
+    <h1>What are you looking for?</h1>
+
+    <p>
+        Find jobs, services, rentals, vehicles, shopping and more.
+    </p>
+
+    <div class="search">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search anything..."
+        >
+        <button onclick="searchSite()">Search</button>
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">Explore</div>
+
+    <div class="categories">
+
+        <div class="category" onclick="openCategory('Jobs & Workers')">
+            <div class="category-icon">💼</div>
+            <h3>Jobs & Workers</h3>
+            <p>Find work or workers</p>
+        </div>
+
+        <div class="category" onclick="openCategory('Futsal')">
+            <div class="category-icon">⚽</div>
+            <h3>Futsal</h3>
+            <p>Book and discover grounds</p>
+        </div>
+
+        <div class="category" onclick="openCategory('2 Wheeler Rental')">
+            <div class="category-icon">🏍️</div>
+            <h3>2-Wheeler Rental</h3>
+            <p>Rent bikes and scooters</p>
+        </div>
+
+        <div class="category" onclick="openCategory('4 Wheeler Rental')">
+            <div class="category-icon">🚗</div>
+            <h3>4-Wheeler Rental</h3>
+            <p>Find cars for rent</p>
+        </div>
+
+        <div class="category" onclick="openCategory('Clothing')">
+            <div class="category-icon">👕</div>
+            <h3>Clothing</h3>
+            <p>Shop clothes</p>
+        </div>
+
+        <div class="category" onclick="openCategory('Vehicle Resale')">
+            <div class="category-icon">🔄</div>
+            <h3>Vehicle Resale</h3>
+            <p>Buy and sell vehicles</p>
+        </div>
+
+        <div class="category" onclick="openCategory('Services')">
+            <div class="category-icon">🛠️</div>
+            <h3>Services</h3>
+            <p>Find local services</p>
+        </div>
+
+        <div class="category" onclick="openCategory('Marketplace')">
+            <div class="category-icon">🛍️</div>
+            <h3>Marketplace</h3>
+            <p>Buy and sell items</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-title">Quick actions</div>
+
+    <div class="actions">
+
+        <button class="action primary" onclick="postSomething()">
+            ＋ Post something
+        </button>
+
+        <button class="action" onclick="openCategory('Find')">
+            🔎 Find something
+        </button>
+
+    </div>
+
+</section>
+
+
+<section class="ai">
+
+    <h2>🤖 AI Assistant</h2>
+
+    <p>
+        Need help? Ask the assistant to help you find jobs,
+        rentals, vehicles, services or other things on Puіh Taw nna.
+    </p>
+
+    <button onclick="openAI()">
+        Ask AI Assistant →
+    </button>
+
+</section>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+    <div class="modal-box">
+
+        <h2 id="modalTitle">Puіh Taw nna</h2>
+
+        <p id="modalText">
+            Welcome!
+        </p>
+
+        <button class="close" onclick="closeModal()">
+            Close
+        </button>
+
+    </div>
+
 </div>
 
-<h2>Latest Jobs</h2>
-<div id="latest"></div>
-</div>
 
-<div id="jobs" class="screen">
-<h2>Find Jobs</h2>
-<input id="search" placeholder="Search for a job...">
-<button onclick="searchJobs()">Search</button>
-<div id="joblist"></div>
-</div>
+<!-- BOTTOM NAV -->
 
-<div id="post" class="screen">
-<h2>Post a Job</h2>
+<nav class="bottom-nav">
 
-<input id="title" placeholder="Job title">
-<input id="location" placeholder="Location">
-<input id="pay" placeholder="Pay e.g. ₹800/day">
+    <div class="nav-item active" onclick="goHome()">
+        <div>⌂</div>
+        Home
+    </div>
 
-<select id="type">
-<option>Full-time</option>
-<option>Part-time</option>
-<option>Temporary</option>
-</select>
+    <div class="nav-item" onclick="openCategory('Explore')">
+        <div>⌕</div>
+        Explore
+    </div>
 
-<input id="hours" placeholder="Working hours">
-<textarea id="description" placeholder="Describe the job"></textarea>
+    <div class="nav-item" onclick="postSomething()">
+        <div>＋</div>
+        Post
+    </div>
 
-<button onclick="postJob()">Post Job</button>
-</div>
+    <div class="nav-item" onclick="openCategory('Profile')">
+        <div>◉</div>
+        Profile
+    </div>
 
-<div id="profile" class="screen">
-<h2>My Profile</h2>
-<div class="box">
-<h3>👤 Puih Tawnna User</h3>
-<p>Worker / Employer</p>
-</div>
-</div>
-
-</main>
-
-<nav>
-<button onclick="show('home')">🏠 Home</button>
-<button onclick="show('jobs')">🔎 Jobs</button>
-<button onclick="show('post')">➕ Post</button>
-<button onclick="show('profile')">👤 Profile</button>
 </nav>
+
 
 <script>
 
-let jobs=JSON.parse(localStorage.getItem("jobs")||"[]");
+function openCategory(category) {
 
-function show(page){
-document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
-document.getElementById(page).classList.add("active");
-render();
+    document.getElementById("modalTitle").innerText = category;
+
+    document.getElementById("modalText").innerText =
+        "The " + category +
+        " section is ready to be connected to your app. " +
+        "You can later add listings, booking, profiles, payments and other features here.";
+
+    document.getElementById("modal").style.display = "flex";
 }
 
-function postJob(){
 
-let job={
-title:document.getElementById("title").value,
-location:document.getElementById("location").value,
-pay:document.getElementById("pay").value,
-type:document.getElementById("type").value,
-hours:document.getElementById("hours").value,
-description:document.getElementById("description").value
-};
+function postSomething() {
 
-if(!job.title||!job.location||!job.pay){
-alert("Please fill in the job title, location and pay.");
-return;
+    document.getElementById("modalTitle").innerText = "＋ Post Something";
+
+    document.getElementById("modalText").innerText =
+        "Here you will eventually be able to post a job, sell a vehicle, " +
+        "list a rental, advertise clothing, add a service or create another listing.";
+
+    document.getElementById("modal").style.display = "flex";
 }
 
-jobs.push(job);
-localStorage.setItem("jobs",JSON.stringify(jobs));
 
-alert("Job posted successfully!");
+function openAI() {
 
-document.getElementById("title").value="";
-document.getElementById("location").value="";
-document.getElementById("pay").value="";
-document.getElementById("hours").value="";
-document.getElementById("description").value="";
+    document.getElementById("modalTitle").innerText = "🤖 AI Assistant";
 
-show("jobs");
+    document.getElementById("modalText").innerText =
+        "Your AI Assistant will eventually help users search the marketplace, " +
+        "find jobs, compare listings, discover rentals and navigate the app.";
+
+    document.getElementById("modal").style.display = "flex";
 }
 
-function searchJobs(){
-render(document.getElementById("search").value.toLowerCase());
+
+function searchSite() {
+
+    let search = document.getElementById("searchInput").value;
+
+    if (search.trim() === "") {
+
+        document.getElementById("modalTitle").innerText = "Search";
+
+        document.getElementById("modalText").innerText =
+            "Type something into the search box first.";
+
+    } else {
+
+        document.getElementById("modalTitle").innerText =
+            "Searching...";
+
+        document.getElementById("modalText").innerText =
+            "You searched for: " + search +
+            ". Search results will appear here when the marketplace database is connected.";
+    }
+
+    document.getElementById("modal").style.display = "flex";
 }
 
-function render(search=""){
 
-let filtered=jobs.filter(j=>
-j.title.toLowerCase().includes(search)||
-j.location.toLowerCase().includes(search)||
-j.description.toLowerCase().includes(search)
-);
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
 
-let html="";
 
-filtered.forEach((j,i)=>{
-html+=`
-<div class="job">
-<h3>${j.title}</h3>
-<p>📍 ${j.location}</p>
-<p>💰 ${j.pay}</p>
-<p>🕐 ${j.hours}</p>
-<p>${j.description}</p>
-<button onclick="apply('${j.title}')">Apply</button>
-</div>`;
-});
+function goHome() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
 
-if(!html) html="<p>No jobs posted yet.</p>";
+</script>
 
-document.getElementById("joblist").innerHTML=html;
-document
+</body>
+</html>
