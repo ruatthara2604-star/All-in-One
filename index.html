@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Puih Tawnna</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#222}
+header{background:#171717;color:white;padding:22px;text-align:center}
+header h1{color:#f4a51c;margin:5px}
+main{padding:20px}
+.box{background:white;padding:20px;border-radius:18px;margin-bottom:15px}
+button{background:#f4a51c;border:0;padding:14px;border-radius:12px;font-weight:bold;width:100%;margin-top:10px}
+input,textarea,select{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:10px;box-sizing:border-box}
+.job{background:white;padding:15px;border-radius:15px;margin:10px 0;border:1px solid #ddd}
+nav{position:fixed;bottom:0;left:0;right:0;background:white;padding:10px;display:flex;gap:5px}
+nav button{margin:0;padding:10px}
+.screen{display:none}.active{display:block}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🛠️ Puih Tawnna</h1>
+<p>Find Work. Find Workers.</p>
+</header>
+
+<main>
+
+<div id="home" class="screen active">
+<div class="box">
+<h2>Welcome to Puih Tawnna</h2>
+<p>Find jobs or find people who can work for you.</p>
+<button onclick="show('jobs')">🔎 Find a Job</button>
+<button onclick="show('post')">➕ Post a Job</button>
+</div>
+
+<h2>Latest Jobs</h2>
+<div id="latest"></div>
+</div>
+
+<div id="jobs" class="screen">
+<h2>Find Jobs</h2>
+<input id="search" placeholder="Search for a job...">
+<button onclick="searchJobs()">Search</button>
+<div id="joblist"></div>
+</div>
+
+<div id="post" class="screen">
+<h2>Post a Job</h2>
+
+<input id="title" placeholder="Job title">
+<input id="location" placeholder="Location">
+<input id="pay" placeholder="Pay e.g. ₹800/day">
+
+<select id="type">
+<option>Full-time</option>
+<option>Part-time</option>
+<option>Temporary</option>
+</select>
+
+<input id="hours" placeholder="Working hours">
+<textarea id="description" placeholder="Describe the job"></textarea>
+
+<button onclick="postJob()">Post Job</button>
+</div>
+
+<div id="profile" class="screen">
+<h2>My Profile</h2>
+<div class="box">
+<h3>👤 Puih Tawnna User</h3>
+<p>Worker / Employer</p>
+</div>
+</div>
+
+</main>
+
+<nav>
+<button onclick="show('home')">🏠 Home</button>
+<button onclick="show('jobs')">🔎 Jobs</button>
+<button onclick="show('post')">➕ Post</button>
+<button onclick="show('profile')">👤 Profile</button>
+</nav>
+
+<script>
+
+let jobs=JSON.parse(localStorage.getItem("jobs")||"[]");
+
+function show(page){
+document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+document.getElementById(page).classList.add("active");
+render();
+}
+
+function postJob(){
+
+let job={
+title:document.getElementById("title").value,
+location:document.getElementById("location").value,
+pay:document.getElementById("pay").value,
+type:document.getElementById("type").value,
+hours:document.getElementById("hours").value,
+description:document.getElementById("description").value
+};
+
+if(!job.title||!job.location||!job.pay){
+alert("Please fill in the job title, location and pay.");
+return;
+}
+
+jobs.push(job);
+localStorage.setItem("jobs",JSON.stringify(jobs));
+
+alert("Job posted successfully!");
+
+document.getElementById("title").value="";
+document.getElementById("location").value="";
+document.getElementById("pay").value="";
+document.getElementById("hours").value="";
+document.getElementById("description").value="";
+
+show("jobs");
+}
+
+function searchJobs(){
+render(document.getElementById("search").value.toLowerCase());
+}
+
+function render(search=""){
+
+let filtered=jobs.filter(j=>
+j.title.toLowerCase().includes(search)||
+j.location.toLowerCase().includes(search)||
+j.description.toLowerCase().includes(search)
+);
+
+let html="";
+
+filtered.forEach((j,i)=>{
+html+=`
+<div class="job">
+<h3>${j.title}</h3>
+<p>📍 ${j.location}</p>
+<p>💰 ${j.pay}</p>
+<p>🕐 ${j.hours}</p>
+<p>${j.description}</p>
+<button onclick="apply('${j.title}')">Apply</button>
+</div>`;
+});
+
+if(!html) html="<p>No jobs posted yet.</p>";
+
+document.getElementById("joblist").innerHTML=html;
+document
